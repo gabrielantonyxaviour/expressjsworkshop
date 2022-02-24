@@ -1,4 +1,4 @@
-### Express - Typescript Boilerplate with MongoDB & Auth0 with sample endpoints.
+### Gambling API using Express.js and Heroku DB
 
 ## Setup
 Use `npm` to install the project dependencies:
@@ -12,17 +12,18 @@ npm install
 API_PORT=5000
 
 # Auth0 Config
-APP_BASE_URL=http://localhost:5000 
-AUTH0_ISSUER_BASE_URL=https://fabianferno.eu.auth0.com/ 
+APP_BASE_URL=http://localhost:5000
 
 # MongoDB Config
-MONGO_DB_URI="YOUR_MONGO_DB_URI"
+DATABASE_URL="DB_CONNECTION_STRING"
 ```
 
 ```bash
 npm run dev
 ```
+## Info 
 
+This project is a submission for express.js workshop conducted by Fabian Ferno, Pattarai.
 
 ## License
 
