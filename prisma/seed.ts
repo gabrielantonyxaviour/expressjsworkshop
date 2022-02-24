@@ -3,41 +3,22 @@ import faker from "@faker-js/faker";
 
 const prisma = new PrismaClient();
 
-const NUMBER_OF_USERS = 10;
-const MAX_POSTS = 10;
-const MAX_PROFILES = 2;
+const NUMBER_OF_PLAYERS = 10;
 
-const users: Prisma.UserCreateInput[] = Array.from({
-  length: NUMBER_OF_USERS,
+const players: Prisma.PlayerCreateInput[] = Array.from({
+  length: NUMBER_OF_PLAYERS,
 }).map((_, i) => ({
   email: faker.internet.email(),
   name: faker.name.firstName(),
-  posts: {
-    createMany: {
-      data: Array.from({
-        length: faker.datatype.number({ min: 0, max: MAX_POSTS }),
-      }).map(() => ({
-        content: faker.lorem.paragraphs(),
-        title: faker.lorem.words(),
-      })),
-    },
-  },
-  profiles: {
-    createMany: {
-      data: Array.from({
-        length: faker.datatype.number({ min: 1, max: MAX_PROFILES }),
-      }).map(() => ({
-        bio: faker.lorem.paragraph(),
-      })),
-    },
-  },
+  balance: 10000,
+  joined_at: Date(),
 }));
 
 async function main() {
   await prisma.$transaction(
-    users.map((user) =>
-      prisma.user.create({
-        data: user,
+    players.map((player) =>
+      prisma.player.create({
+        data: player,
       })
     )
   );

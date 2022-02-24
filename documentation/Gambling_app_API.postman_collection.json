@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "e909237f-d8bd-413a-8a1b-507ffd9f417d",
+		"name": "Gambling app API",
+		"description": "Welcome to my gambling API :) This documentation contains all the information required to use this fun API. There are three different sections of endpoints: **Players**, **Rolls** and **Flips**.\n\n*   Players - Perform operations on players - 6 end points\n*   Rolls - Get balance and perform die rolls - 2 end points\n*   Flips - Get balance and perform coin flips - 2 end points\n    \n\nThis API consists a total of 10 end points to perform all the required operations to create a gambling application.\n\n  \n*Disclaimer: This gambling app does not involve real money as it is just for fun and uses fake coins.*",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Players",
+			"item": [
+				{
+					"name": "Get all players",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/v1/players",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"players"
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   This is a very basic end-point. Just call this end-point without passing any parameters anywhere and you will get all the players who have created accounts in this API.\n*   This contains each players rolls and flips, hence very useful to create leaderboards by sorting data according to your need\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\nNone"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a player",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\" : \"John Doe\",\r\n  \"bio\" : \"This is the bio for John Doe\",\r\n  \"email\" : \"johndoe@him.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/players",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"players"
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point if you need to create a player.\n*   Pass the above data in the body of the request as all three keys are mandatory.\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\n*   **name** - Enter the name of the user\n*   **bio** - Enter the bio for the user\n*   **email** - Enter the email id of the user \\[ ***Note:*** *Email id has unique constraint and returns error if the same email is provided \\]*"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a player",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"player_id\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/players",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"players"
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point when you need to delete a player from the database.\n*   Just pass the id of the player to be deleted in the body of the request and there you go, the player is deleted. It's that easy :)\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\n*   **player_id** - ID of the player to be deleted"
+					},
+					"response": []
+				},
+				{
+					"name": "Update balance of player(s)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"player_id\":3,\r\n    \"update\":900\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/players",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"players"
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point when you need to update the balance of a player or all the players.\n*   Just pass the ID of the player to be updated in the body of the request and the coins to be updated. If the ID is not provided the balance of all the players will be uploaded as per the update.\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\n*   **player_id** \\[ Optional \\]- ID of the player to be update balance.\n*   **update** - Amount to be updated to the balance."
+					},
+					"response": []
+				},
+				{
+					"name": "Get player by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/v1/players/:player_id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"players",
+								":player_id"
+							],
+							"variable": [
+								{
+									"key": "player_id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point when you need to get any specific player's data, their rolls and flips data by using their ID.\n*   Just pass the id of the player to be viewed in the query of the request,\n*   Use this endpoint to create a profile page for the users as it contains all the data of the player.\n    \n\n#### Query Parameters\n\n*   **player_id** - Enter the ID of the player at the end of the request like this,\n    \n\n```\nlocalhost:5000/v1/players/2\n\n```\n\n#### Raw JSON Body\n\nNone"
+					},
+					"response": []
+				},
+				{
+					"name": "Update player by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"vijay@anil.com\",\r\n    \"balance\":700\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/players/:player_id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"players",
+								":player_id"
+							],
+							"variable": [
+								{
+									"key": "player_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point when you need to edit any specific player's data.\n*   Just pass the id of the player to be viewed in the query of the request and the data to be edited in the body of the request. All the data in the body is optional. Only the data to be edited can be provided.\n*   Use this endpoint to edit the profile of the user.\n    \n\n#### Query Parameters\n\n*   **player_id** - Enter the ID of the player at the end of the request like this,\n    \n\n```\nlocalhost:5000/v1/players/1\n\n```\n\n#### Raw JSON Body\n\n*   **name** \\[ Optional \\] - Enter the new name for the user.\n*   **email** \\[ Optional \\] - Enter the new email for the user. \\[ ***Note:*** *Email id has unique constraint and returns error if the same email is provided \\]*\n*   **bio** \\[ Optional \\] - Enter the new bio for the user.\n*   **balance** \\[ Optional \\] - Enter the new balance for the user."
+					},
+					"response": []
+				}
+			],
+			"description": "There are **six** different end-points in this section:\n\n*   Get all players\n*   Create a player\n*   Delete a player\n*   Update balance of player(s)\n*   Get player by id\n*   Update player by id"
+		},
+		{
+			"name": "Rolls",
+			"item": [
+				{
+					"name": "Get balance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"player_id\":11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/roll",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"roll"
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point if you need to obtain the balance of the user.\n*   Pass the ID of the player in the body of the request and obtain the balance of the respective user :)\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\n*   **player_id** - Enter the ID of the player to check balance."
+					},
+					"response": []
+				},
+				{
+					"name": "Roll 3 die",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"player_id\":1,\r\n    \"bet\":1000,\r\n    \"balance\":1600,\r\n    \"rolls_won\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/roll",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"roll"
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point to create a roll record in the user's database.\n*   Pass the ID of the player, total rolls guessed right out of the 3 attempts, amount betted, balance amount in the body of the request to successfully save the data.\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\n*   **player_id** - Enter the ID of the player to check balance.\n*   **rolls_won** \\- Enter the total rolls guessed right out of the 3 rolls.\n*   **bet** \\- Enter the amount betted on this flip.\n*   **balance** \\- Enter the balance obtained from the previous request."
+					},
+					"response": []
+				}
+			],
+			"description": "There are **two** different end-points in this section:\n\n*   Get balance\n*   Roll 3 die\n    \n\n#### HOW DOES IT WORK?\n\n*   Roll 3 dies in your application and return the total right guesses in the request.\n*   If no guesses are right, all the amount betted is lost.\n*   If 1 guess is right, the amount betted is returned back.\n*   If 2 guesses are right, the amount betted is doubled and returned.\n*   If all 3 guesses are right, the amount betted is multiplied x4 and returned.\n    \n\n**ADVISED WAY TO USE THIS END-POINT:**\n\n1.  First call the *Get balance* endpoint and get the balance of the user.\n2.  Then perform 3 die rolls and provide the total right guesses, amount betted and the balance obtained from the previous request along with this request."
+		},
+		{
+			"name": "Flips",
+			"item": [
+				{
+					"name": "Get balance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"player_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/flip",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"flip"
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point if you need to obtain the balance of the user.\n*   Pass the ID of the player in the body of the request and obtain the balance of the respective user :)\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\n*   **player_id** \\- Enter the ID of the player to check balance."
+					},
+					"response": []
+				},
+				{
+					"name": "Flip a coin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"player_id\":1,\r\n    \"result\":\"W\",\r\n    \"bet\":1500,\r\n    \"balance\":1600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/v1/flip/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"flip",
+								""
+							]
+						},
+						"description": "#### HOW TO USE\n\n*   Use this end-point to create a flip record in the user's database.\n*   Pass the ID of the player, result of the flip \\[ \"W\" or \"L\" \\], amount betted, balance amount in the body of the request to successfully save the data.\n    \n\n#### Query Parameters\n\nNone\n\n#### Raw JSON Body\n\n*   **player_id** - Enter the ID of the player to check balance.\n*   **result** \\- Enter the result of the flip \\[ \"W\" or \"L\" \\]\n*   **bet** \\- Enter the amount betted on this flip.\n*   **balance** \\- Enter the balance obtained from the previous request."
+					},
+					"response": []
+				}
+			],
+			"description": "There are **two** different end-points in this section:\n\n*   Get balance\n*   Flip a coin\n    \n\n### HOW DOES IT WORK?\n\n*   Flip a coin in your application and return if the guess was right are wrong.\n*   If the guess was right, the betted amount is returned doubled.\n*   If the guess was wrong, you will lose the betted amount.\n    \n\n**ADVISED WAY TO USE THIS END-POINT:**\n\n1.  First call the *Get balance* endpoint and get the balance of the user.\n2.  Then flip a coin and provide if it is the right guess or not, amount betted and the balance obtained from the previous request along with this request."
+		}
+	]
+}

@@ -1,15 +1,12 @@
 import { Router } from "express";
-
-import users from "./users/users.route";
-import posts from "./posts/posts.route";
-// import authorize from "../helpers/jwtVerify";
+import flip from "./flip/flip.route";
+import player from "./player/player.route";
+import roll from "./roll/roll.route";
 
 const router: Router = Router();
 
-router.use("/users", users);
-router.use("/posts", posts);
-
-// only for authorized users
-// router.use("/posts", authorize, posts);
+router.use("/players", player);
+router.use("/flip", flip);
+router.use("/roll", roll);
 
 export default router;
